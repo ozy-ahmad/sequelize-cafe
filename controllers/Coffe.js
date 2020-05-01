@@ -1,50 +1,46 @@
-const Menu = require("../models/Menu");
+const Coffe = require("../models/coffe");
 
 module.exports = {
   createData: (req, res) => {
-    Menu.create({
+    Coffe.create({
       name: req.body.name,
+      bean: req.body.bean,
       price: req.body.price,
-      description: req.body.description,
-      image: req.file && req.file.path,
     })
       .then((result) => res.json(result))
       .catch((err) => res.json(err));
   },
   getData: (req, res) => {
-    Menu.findAll()
+    Coffe.findAll()
       .then((result) => res.json(result))
       .catch((err) => {
         throw err;
       });
   },
   getDataById: (req, res) => {
-    Menu.findOne({ where: { id: req.params.menuId } })
+    Coffe.findOne({ where: { id: req.params.coffeId } })
       .then((result) => res.json(result))
       .catch((err) => {
         throw err;
       });
   },
   deleteDataById: (req, res) => {
-    Menu.destroy({ where: { id: req.params.menuId } })
-      .then((result) => res.json({ status: "200", data: result }))
+    Coffe.destroy({ where: { i: req.params.coffeId } })
+      .then((result) => res.json({ status: 200, data: result }))
       .catch((err) => {
         throw err;
       });
   },
   updateDataById: (req, res) => {
-    Menu.update(
+    Coffe.update(
       {
         name: req.body.name,
+        bean: req.body.bean,
         price: req.body.price,
-        description: req.body.description,
-        image: req.body.image,
       },
-      { where: { id: req.params.menuId } }
-    )
-      .then((result) => res.json(result))
-      .catch((err) => {
-        throw err;
-      });
+      { where: { id: req.params.coffeId } }
+    ).catch((err) => {
+      throw err;
+    });
   },
 };

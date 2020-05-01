@@ -7,11 +7,14 @@ const sequelize = new Sequelize(
   config.password,
   config
 );
-
-const Menu = sequelize.define(
-  "menu",
+const coffes = sequelize.define(
+  "coffes",
   {
     name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    bean: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -19,15 +22,23 @@ const Menu = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    description: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    image: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
   },
   { freezeTableName: true }
 );
-module.exports = Menu;
+module.exports = coffes;
+// "use strict";
+// module.exports = (sequelize, DataTypes) => {
+//   const coffe = sequelize.define(
+//     "coffes",
+//     {
+//       name: DataTypes.STRING,
+//       bean: DataTypes.STRING,
+//       price: DataTypes.STRING,
+//     },
+//     {}
+//   );
+//   coffe.associate = function (models) {
+//     // associations can be defined here
+//   };
+//   return coffe;
+// };
